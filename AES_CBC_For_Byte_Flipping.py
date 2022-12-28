@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # Script written by Mike on Tech on YT: /
 # https://youtu.be/i9KiOjeE-VY/
 # This script gets to decrypt by flipping the mode bit/
@@ -32,7 +34,7 @@ for cookie_char_pos in range(len(original_cookie)):
   for bit_pos in range(128): # [1,2,4,8,16,32,64,128]: #byte stream - 8 bit range affords 128 possiblities
     altered_cookie = bitFlip(cookie_char_pos, bit_pos)
     cookies = {'auth_name': altered_cookie}
-    r = requests.get('http://mercury.picoctf.net:25992/', cookies=cookies)
+    r = requests.get('http://mercury.picoctf.net:25992/', cookies=cookies)    
     t = r.text.lower()
     if "picoCTF{".lower() in t or "picoCTF {".lower() in t:
       print(r.text)

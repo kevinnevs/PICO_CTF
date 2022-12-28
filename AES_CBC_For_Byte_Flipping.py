@@ -11,9 +11,9 @@ from base64 import b64decode
 from base64 import b64encode
 import requests
 
-#https://play.picoctf.org/practice/challenge/124?category=1&page=1&search=
+# https://play.picoctf.org/practice/challenge/124?category=1&page=1&search=
 
-original_cookie = b64decode("UHJQRkdWTyswVFhhMHFrRktmNnQ3WmhuWUtVc09sTHB4VFgzSllIQUJYRXNBWkY4Q1RLMmVGZENCVld6MVhhbS8xWk5vKzBIQmd0SmVaRzJzUklkTE81dFFOb1FBMnNjMk1kK3VDeXEzUVk1K3JHTnYzMmVlNHRyVmsvdllITDI=")
+original_cookie = b64decode("U0g2ZWpFVUxrQXRuditlVDROYjFTejNMdDMxTDFmNWt0QmJoQjJLR01VZ0JuY1VLNDhMTmVFSWRhN1BIcDNacStoR3pPRmNOWTRMZThwWlQwd2ZFVHpmbVRocnFTMjBPSzNnU3dwbUI5Mm83NWVrYndPd1gxbExicVFYMGhOaDU=")
 original_cookie = bytearray(original_cookie)
 
 def bitFlip(cookie_char_pos:int, bit_pos:int) -> str:
@@ -32,7 +32,7 @@ for cookie_char_pos in range(len(original_cookie)):
   for bit_pos in range(128): # [1,2,4,8,16,32,64,128]: #byte stream - 8 bit range affords 128 possiblities
     altered_cookie = bitFlip(cookie_char_pos, bit_pos)
     cookies = {'auth_name': altered_cookie}
-    r = requests.get('http://mercury.picoctf.net:21553/', cookies=cookies)
+    r = requests.get('http://mercury.picoctf.net:25992/', cookies=cookies)
     t = r.text.lower()
     if "picoCTF{".lower() in t or "picoCTF {".lower() in t:
       print(r.text)
